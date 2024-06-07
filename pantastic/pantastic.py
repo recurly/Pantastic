@@ -45,6 +45,16 @@ class Pantastic:
         """
         Walk a directory path recursively
         """
+        # ignore .rbenv in home dirs
+        home_dir = '/home'
+        if os.path.exists(home_dir) and os.path.isdir(home_dir):
+            for user_dir in os.listdir(home_dir):
+                user_path = os.path.join(home_dir, user_dir, '.rbenv')
+                if os.path.isdir(user_path):
+                    self.ignore_paths.append(user_path)
+                    if self.verbose:
+                        click.echo(f"Added to ignore paths: {user_path}")
+
         if self.output:
             self.output_handle = open(self.output, 'w')
             self.output_handle.write("filename,issuer,number\n")
