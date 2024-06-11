@@ -50,21 +50,21 @@ class Pantastic:
             for user in os.listdir(home_dir):
                 user_path = os.path.join(home_dir, user)
                 
-                # Check for .rbenv directory
+                # Check for .rbenv directory, and ignores it if present
                 rbenv_path = os.path.join(user_path, '.rbenv')
                 if os.path.isdir(rbenv_path):
                     self.ignore_paths.append(rbenv_path)
                     if self.verbose:
                         click.echo(f"Added to ignore paths: {rbenv_path}")
                 
-                # Check for .bundle directory
+                # Check for .bundle directory, and ignores it if present
                 bundle_path = os.path.join(user_path, '.bundle')
                 if os.path.isdir(bundle_path):
                     self.ignore_paths.append(bundle_path)
                     if self.verbose:
                         click.echo(f"Added to ignore paths: {bundle_path}")
 
-                # Check for .vscode-server directory
+                # Check for .vscode-server directory, and ignores it if present
                 vscode_path = os.path.join(user_path, '.vscode-server')
                 if os.path.isdir(vscode_path):
                     self.ignore_paths.append(vscode_path)
